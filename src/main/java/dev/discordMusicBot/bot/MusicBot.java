@@ -11,7 +11,7 @@ import javax.security.auth.login.LoginException;
 
 public class MusicBot {
 
-    private String token;
+    private final String token;
 
     public MusicBot() {
         Dotenv dotenv = Dotenv.load();  // Load .env
