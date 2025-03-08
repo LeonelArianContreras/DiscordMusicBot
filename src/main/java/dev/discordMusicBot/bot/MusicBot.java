@@ -23,7 +23,6 @@ public class MusicBot {
 
         JDABuilder jda = JDABuilder.createDefault(bot.token,
                 EnumSet.of(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT));
-        jda.setActivity(Activity.watching("your Mom!"));
         jda.setStatus(OnlineStatus.ONLINE);
         jda.addEventListeners(new EventListener());
         jda.build();

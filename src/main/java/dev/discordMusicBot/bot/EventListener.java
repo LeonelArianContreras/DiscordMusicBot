@@ -27,6 +27,7 @@ public class EventListener extends ListenerAdapter {
         commands.put("greet", new Greet());
         commands.put("setprefix", new SetPrefix(this));
         commands.put("avatar", new Avatar());
+        commands.put("userinfo", new UserInfo());
         // ToDo: Add commands left
     }
 
