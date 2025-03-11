@@ -2,7 +2,6 @@ package dev.discordMusicBot.bot;
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import java.util.EnumSet;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -22,7 +21,12 @@ public class MusicBot {
         MusicBot bot = new MusicBot();
 
         JDABuilder jda = JDABuilder.createDefault(bot.token,
-                EnumSet.of(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT));
+                EnumSet.of(
+                        GatewayIntent.GUILD_MESSAGES,
+                        GatewayIntent.MESSAGE_CONTENT,
+                        GatewayIntent.GUILD_MEMBERS,
+                        GatewayIntent.GUILD_VOICE_STATES
+                ));
         jda.setStatus(OnlineStatus.ONLINE);
         jda.addEventListeners(new EventListener());
         jda.build();
