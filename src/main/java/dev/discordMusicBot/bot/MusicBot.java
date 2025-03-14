@@ -8,8 +8,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import javax.security.auth.login.LoginException;
 
-public class
-MusicBot {
+public class MusicBot {
 
     private final String token;
 
