@@ -64,7 +64,7 @@ public class EventListener extends ListenerAdapter {
     @Override
     public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
         sendWelcomeOrFarewellMessage(event.getGuild(), "\uD83D\uDC94 Bye bye, " +
-                event.getUser().getAsMention() + "! We will miss u \uD83D\uDC94");
+                event.getUser().getAsMention() + "! We'll miss u \uD83D\uDC94");
     }
 
 
