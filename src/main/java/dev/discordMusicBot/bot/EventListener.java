@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
+import dev.discordMusicBot.service.*;
 import dev.discordMusicBot.commands.*;
 
 public class EventListener extends ListenerAdapter {
@@ -36,7 +36,7 @@ public class EventListener extends ListenerAdapter {
         commands.put("userinfo", new UserInfo());
         commands.put("hug", new CommandWithGif("hug"));
         commands.put("kiss", new CommandWithGif("kiss"));
-        commands.put("love", new Love());
+        commands.put("love", new Love(new LoveService()));
         // ToDo: Add commands left
     }
 
