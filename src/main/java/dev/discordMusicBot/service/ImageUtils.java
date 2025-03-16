@@ -8,11 +8,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-public class ImageService {
+public class ImageUtils {
 
     private final String directory;
 
-    public ImageService(String directory) {
+    public ImageUtils(String directory) {
         this.directory = directory;
     }
 
