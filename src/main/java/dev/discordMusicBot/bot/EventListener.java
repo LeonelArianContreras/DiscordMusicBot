@@ -1,5 +1,7 @@
 package dev.discordMusicBot.bot;
 
+import dev.discordMusicBot.commands.infoCommand.Avatar;
+import dev.discordMusicBot.commands.infoCommand.UserInfo;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
@@ -48,7 +50,7 @@ public class EventListener extends ListenerAdapter {
             if(commands.containsKey(command))
                 commands.get(command).execute(eventUtils);
             else
-                event.getChannel().sendMessage("Unknown command: " + command).queue();
+                eventUtils.sendBasicMessage("Unknown command: " + command);
         }
     }
 

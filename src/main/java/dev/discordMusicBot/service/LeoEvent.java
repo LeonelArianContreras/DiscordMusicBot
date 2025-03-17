@@ -75,4 +75,11 @@ public class LeoEvent {
                 .queue();
     }
 
+    public void argumentsVerification(String command, String usageMsg, int minArgs, Integer maxArgs) {
+        if(getSizeOfMessage() < minArgs || (maxArgs != null && getSizeOfMessage() > maxArgs)) { // If maxArgs == null, this part of the preposition will be false due to logical operators
+            sendBasicMessage("Usage: `!" + command + usageMsg);
+            return;
+        }
+    }
+
 }

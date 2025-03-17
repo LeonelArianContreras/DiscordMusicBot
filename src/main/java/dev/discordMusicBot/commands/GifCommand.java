@@ -20,11 +20,7 @@ public class GifCommand implements Command {
     }
 
     public void execute(LeoEvent event) {
-
-        if(event.getSizeOfMessage() < 2) {
-            event.sendBasicMessage("Usage: `!" + command + " <someone>");
-            return;
-        }
+        event.argumentsVerification(command, "<someone>", 2, null);
         ImageUtils imageUtils = new ImageUtils("gifs/" + command, ".gif");
         File randomGif = imageUtils.getFile();
         String huggedMember = event.getEffectiveNameOfMentionedMember(0);

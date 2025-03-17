@@ -55,5 +55,11 @@ public class EmbedUtils {
         return eb;
     }
 
+    public static EmbedBuilder getEmbedPrefix(String prefix) {
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setTitle("Set Prefix to " + prefix);
+        return eb;
+    }
+
 
 }
