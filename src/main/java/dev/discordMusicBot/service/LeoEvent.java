@@ -37,6 +37,10 @@ public class LeoEvent {
         return getMentionedMember(index).getEffectiveAvatarUrl();
     }
 
+    public String getEffectiveNameOfMentionedMember(int index) {
+        return getMentionedMember(index).getEffectiveName();
+    }
+
     public Member getAuthor() {
         return event.getMember();
     }

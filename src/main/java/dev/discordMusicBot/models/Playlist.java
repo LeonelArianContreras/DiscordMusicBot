@@ -1,4 +1,4 @@
 package dev.discordMusicBot.models;
 
-public class Playlist {
+public class Playlist { // ToDo
 }
