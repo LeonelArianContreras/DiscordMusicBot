@@ -1,5 +1,6 @@
 package dev.discordMusicBot.commands;
 
+import dev.discordMusicBot.service.LeoEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -13,15 +14,15 @@ public class SetPrefix implements Command {
         this.eventListener = eventListener;
     }
 
-    public void execute(MessageReceivedEvent event, String[] args) {
+    public void execute(LeoEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        if(args.length < 2) {
+        if(event.getSizeOfMessage() < 2) {
             embed.setTitle("Usage: " + eventListener.getPrefix() + "setPrefix <prefix>");
-            event.getChannel().sendMessageEmbeds(embed.build()).queue();
+            event.sendMessageAsEmbed(embed);
             return;
         }
-        eventListener.setPrefix(args[1]);
+        eventListener.setPrefix(event.getArgument(1));
         embed.setTitle("Set Prefix to " + eventListener.getPrefix());
-        event.getChannel().sendMessageEmbeds(embed.build()).queue();
+        event.sendMessageAsEmbed(embed);
     }
 }

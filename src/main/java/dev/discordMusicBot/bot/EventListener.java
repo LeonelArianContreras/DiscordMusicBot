@@ -34,18 +34,19 @@ public class EventListener extends ListenerAdapter {
         commands.put("setprefix", new SetPrefix(this));
         commands.put("avatar", new Avatar());
         commands.put("userinfo", new UserInfo());
-        commands.put("hug", new CommandWithGif("hug"));
-        commands.put("kiss", new CommandWithGif("kiss"));
+        commands.put("hug", new GifCommand("hug"));
+        commands.put("kiss", new GifCommand("kiss"));
         commands.put("love", new Love(new LoveService()));
         // ToDo: Add commands left
     }
 
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        LeoEvent eventUtils = new LeoEvent(event);
         String[] args = event.getMessage().getContentRaw().split(" ");
         if(args[0].startsWith(prefix)) {
             String command = args[0].substring(1).toLowerCase(); // Remove '!' with substring(index)
             if(commands.containsKey(command))
-                commands.get(command).execute(event, args);
+                commands.get(command).execute(eventUtils);
             else
                 event.getChannel().sendMessage("Unknown command: " + command).queue();
         }

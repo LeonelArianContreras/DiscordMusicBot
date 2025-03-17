@@ -11,19 +11,17 @@ import java.util.Random;
 public class ImageUtils {
 
     private final String directory;
+    private final String typeOfFile;
 
-    public ImageUtils(String directory) {
+    public ImageUtils(String directory, String typeOfFile) {
         this.directory = directory;
+        this.typeOfFile = typeOfFile;
     }
 
-    public BufferedImage getImage() {
-        File folder = getFolder();
-        folderVerification(folder);
-        File[] files = getFilesInFolder();
-        File imageFile = files[new Random().nextInt(files.length)];
-
+    public BufferedImage getBufferedImage() {
+        File randomFile = getFile();
         try {
-            return ImageIO.read(imageFile);
+            return ImageIO.read(randomFile);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -31,16 +29,23 @@ public class ImageUtils {
     }
 
     public File getFolder() {
-        return new File("src/main/resources/pictures/" + directory);
+        return new File("src/main/resources/" + directory);
     }
 
     public File[] getFilesInFolder() {
-        return getFolder().listFiles((dir, name) -> name.endsWith(".png"));
+        return getFolder().listFiles((dir, name) -> name.endsWith(typeOfFile));
     }
 
     public void folderVerification(File folder) {
         if(!folder.exists() || folder.listFiles() == null)
-            System.err.println("Love images folder not found: " + folder.getAbsolutePath());
+            System.err.println("Images folder not found: " + folder.getAbsolutePath());
+    }
+
+    public File getFile() {
+        File folder = getFolder();
+        folderVerification(folder);
+        File[] files = getFilesInFolder();
+        return files[new Random().nextInt(files.length)];
     }
 
 }

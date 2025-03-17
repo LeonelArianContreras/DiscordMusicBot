@@ -1,31 +1,24 @@
 package dev.discordMusicBot.commands;
 
+import dev.discordMusicBot.service.LeoEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import net.dv8tion.jda.api.entities.Role;
 
-import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class UserInfo implements Command {
+public class UserInfo extends InfoCommand {
 
-    public void execute(MessageReceivedEvent event, String[] args) {
-
-        if(args.length < 2) {
-            event.getChannel().sendMessageEmbeds(userData(event.getMember()).build()).queue();
-            return;
-        }
-
-        List<Member> taggedUsers = event.getMessage().getMentions().getMembers();
-        List<EmbedBuilder> embedsUser = taggedUsers.stream().map(UserInfo :: userData).collect(Collectors.toList());
-        embedsUser.forEach(embed -> event.getChannel().sendMessageEmbeds(embed.build()).queue());
+    @Override
+    protected Function<Member, EmbedBuilder> embedBuilderFunction() {
+        return UserInfo :: getUserData;
     }
 
-    public static EmbedBuilder userData(Member member) {
+    public static EmbedBuilder getUserData(Member member) {
         String username = member.getUser().getName();
         String nickname = member.getEffectiveName();
         String avatar = member.getUser().getAvatarUrl() + "?size=1024";

@@ -15,12 +15,12 @@ import java.util.Random;
 
 public class LoveService {
 
-    private final ImageService imageService = new ImageService("love");
+    private final ImageUtils imageService = new ImageUtils("pictures/love", ".png");
     private final AvatarService avatarData = new AvatarService();
 
     public InputStream createLoveImage(String firstAvatarUrl, String secondAvatarUrl) throws IOException {
 
-        BufferedImage backgroundImage = imageService.getImage();
+        BufferedImage backgroundImage = imageService.getBufferedImage();
         BufferedImage firstAvatarImage = avatarData.getCircularAvatarImage(firstAvatarUrl);
         BufferedImage secondAvatarImage = avatarData.getCircularAvatarImage(secondAvatarUrl);
 

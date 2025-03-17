@@ -1,8 +1,6 @@
 package dev.discordMusicBot.commands;
 
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import dev.discordMusicBot.service.*;
-import net.dv8tion.jda.api.utils.FileUpload;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,32 +9,31 @@ public class Love implements Command {
 
     private final LoveService loveService;
 
-
     public Love(LoveService loveService) {
         this.loveService = loveService;
     }
 
-    public void execute(MessageReceivedEvent event, String[] args) {
-        if(args.length < 2 || args.length > 3) {
-            event.getChannel().sendMessage("Usage: `!love <player> ?<player>?").queue();
+    public void execute(LeoEvent event) {
+        if(event.getSizeOfMessage() < 2 || event.getSizeOfMessage() > 3) {
+            event.sendBasicMessage("Usage: `!love <player> ?<player>?");
             return;
         }
-        String oneAvatarUrl = event.getMessage().getMentions().getMembers().get(0).getEffectiveAvatarUrl();
-        String otherAvatarUrl = getAnotherAvatarUrl(event, args);
+        String oneAvatarUrl = event.getAvatarUrlOfMentionedMember(0);
+        String otherAvatarUrl = getAnotherAvatarUrl(event);
 
         try {
             InputStream imageStream = loveService.createLoveImage(oneAvatarUrl, otherAvatarUrl);
-            event.getChannel().sendFiles(FileUpload.fromData(imageStream, "love.png")).queue();
+            event.sendFile(imageStream, "love.png");
 
         } catch(IOException exception) {
             exception.printStackTrace();
         }
     }
 
-    private String getAnotherAvatarUrl(MessageReceivedEvent event, String[] args) {
-        if(args.length == 2)
-            return event.getAuthor().getEffectiveAvatarUrl();
-        return event.getMessage().getMentions().getMembers().get(1).getEffectiveAvatarUrl();
+    private String getAnotherAvatarUrl(LeoEvent event) {
+        if(event.getSizeOfMessage() == 2)
+            return event.getAuthorEffectiveAvatarUrl();
+        return event.getAvatarUrlOfMentionedMember(1);
     }
 
 }

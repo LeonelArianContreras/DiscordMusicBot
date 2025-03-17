@@ -1,8 +1,7 @@
 package dev.discordMusicBot.commands;
 
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import dev.discordMusicBot.service.LeoEvent;
 
 public interface Command {
-    void execute(MessageReceivedEvent event, String[] args); // In order to obligate all comands to have execute method
+    void execute(LeoEvent event); // In order to obligate all comands to have execute method
 }
