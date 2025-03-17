@@ -39,6 +39,8 @@ public class EventListener extends ListenerAdapter {
         commands.put("hug", new GifCommand("hug"));
         commands.put("kiss", new GifCommand("kiss"));
         commands.put("love", new Love(new LoveService()));
+        commands.put("say", new Say());
+        // commands.put("kick", new Kick());
         // ToDo: Add commands left
     }
 

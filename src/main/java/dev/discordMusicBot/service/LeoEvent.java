@@ -7,7 +7,9 @@ import net.dv8tion.jda.api.utils.FileUpload;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LeoEvent {
 
@@ -59,6 +61,11 @@ public class LeoEvent {
 
     public void sendBasicMessage(String message) {
         event.getChannel().sendMessage(message).queue();
+    }
+
+    public void sendString() {
+        String words = String.join(" ", Arrays.copyOfRange(getMessageContent(), 1, getMessageContent().length));
+        sendBasicMessage(words);
     }
 
     public void sendMessageAsEmbed(EmbedBuilder embed) {
