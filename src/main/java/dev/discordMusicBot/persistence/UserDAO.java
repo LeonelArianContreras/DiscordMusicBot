@@ -1,15 +1,14 @@
 package dev.discordMusicBot.persistence;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
+import dev.discordMusicBot.models.UserDB;
+
+import java.sql.*;
 
 import static dev.discordMusicBot.persistence.DatabaseManager.connect;
 
 public class UserDAO {
 
-    public void insertUser(String discord_id, String name, String password) throws SQLException {
+    public void insertUser(String discord_id, String name, String password) {
         String sql = "INSERT INTO users (name, discord_id, password) VALUES (?, ?, ?)";
 
         try(Connection connection = connect()) {
@@ -27,7 +26,7 @@ public class UserDAO {
         }
     }
 
-    public void deleteUser(String discord_id) throws SQLException {
+    public void deleteUserByDiscordID(String discord_id) {
         String sql = "DELETE FROM users WHERE discord_id = ?";
 
         try(Connection connection = connect()) {
@@ -35,11 +34,7 @@ public class UserDAO {
             statement.setString(1, discord_id);
 
             int rowsAffected = statement.executeUpdate();
-            if(rowsAffected > 0) {
-                System.out.println("Deleted user: " + discord_id + " successfully");
-            } else {
-                System.out.println("Deleted user: " + discord_id + " not founded");
-            }
+            System.out.println(rowsAffected > 0 ? "Deleted user successfully" : "Deleted user failed");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +42,7 @@ public class UserDAO {
         }
     }
 
-    public void updateUser(String discord_id, String name, String password) throws SQLException { // I suppose that discord_id will never change
+    public void updateUserByDiscordID(String discord_id, String name, String password) { // I suppose that discord_id will never change
         String sql = "UPDATE users SET name = ?, password = ? WHERE discord_id = ?";
 
         try(Connection connection = connect()) {
@@ -57,16 +52,39 @@ public class UserDAO {
             statement.setString(3, discord_id);
 
             int rowsAffected = statement.executeUpdate();
-            if(rowsAffected > 0) {
-                System.out.println("Updated user: " + name + " successfully");
-            } else {
-                System.out.println("Updated user: " + name + " not founded");
-            }
+            System.out.println(rowsAffected > 0 ? "User deleted" : "User not found");
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Updated user: " + name + " failed");
         }
     }
+
+    public UserDB getUserByDiscordID(String discord_id) {
+        String sql = "SELECT * FROM users WHERE discord_id = ?";
+
+        try(Connection connection = connect()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, discord_id);
+
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                return new UserDB(
+                        resultSet.getString("name"),
+                        resultSet.getString("discord_id"),
+                        resultSet.getString("password"),
+                        resultSet.getInt("user_id")
+                );
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("User not found");
+        }
+
+        System.out.println("No user found with discord_id: " + discord_id);
+        return null;
+    }
+
 
 }

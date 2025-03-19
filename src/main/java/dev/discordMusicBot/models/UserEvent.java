@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class User {
+public class UserEvent {
     private final String username;
     private final String nickname;
     private final String avatarUrl;
@@ -16,7 +16,7 @@ public class User {
     private final String joinDate;
     private final String roles;
 
-    public User(Member member) {
+    public UserEvent(Member member) {
         this.username = member.getUser().getName();
         this.nickname = member.getEffectiveName();
         this.avatarUrl = member.getUser().getAvatarUrl() + "?size=1024";

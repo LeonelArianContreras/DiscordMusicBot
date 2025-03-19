@@ -1,19 +1,14 @@
 package dev.discordMusicBot.service;
 
-import dev.discordMusicBot.models.User;
+import dev.discordMusicBot.models.UserEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Role;
-
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.stream.Collectors;
 
 // Embed lets us beautify the bot interactions
 public class EmbedUtils {
 
     public static EmbedBuilder getEmbedAvatar(Member member) {
-        User user = new User(member);
+        UserEvent user = new UserEvent(member);
 
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("Avatar de: " + member.getEffectiveName());
@@ -24,11 +19,11 @@ public class EmbedUtils {
     }
 
     public static EmbedBuilder getUserData(Member member) {
-        User user = new User(member);
+        UserEvent user = new UserEvent(member);
         return getEmbedUserInfo(user);
     }
 
-    private static EmbedBuilder getEmbedUserInfo(User user) {
+    private static EmbedBuilder getEmbedUserInfo(UserEvent user) {
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle("User Info");
         eb.setThumbnail(user.getAvatarUrl());
