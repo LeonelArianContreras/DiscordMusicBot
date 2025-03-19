@@ -86,5 +86,9 @@ public class UserDAO {
         return null;
     }
 
+    public boolean userExists(String discord_id) {
+        return getUserByDiscordID(discord_id) != null;
+    }
+
 
 }

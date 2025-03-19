@@ -59,6 +59,12 @@ public class LeoEvent {
         return getMessageContent()[index];
     }
 
+    public String getAnotherAvatarUrl() {
+        if(getSizeOfMessage() == 2)
+            return getAuthorEffectiveAvatarUrl();
+        return getAvatarUrlOfMentionedMember(1);
+    }
+
     public void sendBasicMessage(String message) {
         event.getChannel().sendMessage(message).queue();
     }

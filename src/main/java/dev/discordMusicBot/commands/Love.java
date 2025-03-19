@@ -17,7 +17,7 @@ public class Love implements Command {
         event.argumentsVerification("love", "<player> ?<player>?", 2, 3);
 
         String oneAvatarUrl = event.getAvatarUrlOfMentionedMember(0);
-        String otherAvatarUrl = getAnotherAvatarUrl(event);
+        String otherAvatarUrl = event.getAnotherAvatarUrl();
         try {
             InputStream imageStream = loveService.createLoveImage(oneAvatarUrl, otherAvatarUrl);
             event.sendFile(imageStream, "love.png");
@@ -27,10 +27,6 @@ public class Love implements Command {
         }
     }
 
-    private String getAnotherAvatarUrl(LeoEvent event) {
-        if(event.getSizeOfMessage() == 2)
-            return event.getAuthorEffectiveAvatarUrl();
-        return event.getAvatarUrlOfMentionedMember(1);
-    }
+
 
 }
