@@ -1,8 +1,8 @@
 package dev.discordMusicBot.commands;
 
-import dev.discordMusicBot.service.LeoEvent;
+import dev.discordMusicBot.utils.LeoEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
-import static dev.discordMusicBot.service.EmbedUtils.getEmbedSpeech;
+import static dev.discordMusicBot.utils.EmbedUtils.getEmbedSpeech;
 
 public class Greet implements Command {
 

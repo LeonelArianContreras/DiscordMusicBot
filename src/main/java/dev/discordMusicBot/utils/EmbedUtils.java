@@ -1,4 +1,4 @@
-package dev.discordMusicBot.service;
+package dev.discordMusicBot.utils;
 
 import dev.discordMusicBot.models.UserEvent;
 import net.dv8tion.jda.api.EmbedBuilder;

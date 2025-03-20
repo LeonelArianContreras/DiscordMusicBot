@@ -1,6 +1,6 @@
 package dev.discordMusicBot.commands.infoCommand;
 
-import dev.discordMusicBot.service.EmbedUtils;
+import dev.discordMusicBot.utils.EmbedUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 

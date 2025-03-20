@@ -1,6 +1,6 @@
 package dev.discordMusicBot.commands;
 
-import dev.discordMusicBot.service.LeoEvent;
+import dev.discordMusicBot.utils.LeoEvent;
 
 public class Say implements Command {
 

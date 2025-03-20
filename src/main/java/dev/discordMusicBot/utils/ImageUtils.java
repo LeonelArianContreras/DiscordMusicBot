@@ -1,6 +1,4 @@
-package dev.discordMusicBot.service;
-
-import dev.discordMusicBot.service.*;
+package dev.discordMusicBot.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

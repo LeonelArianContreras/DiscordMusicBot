@@ -90,5 +90,8 @@ public class UserDAO {
         return getUserByDiscordID(discord_id) != null;
     }
 
+    public boolean passwordIsCorrect(String discord_id, String password) { // ToDo
+        return true;
+    }
 
 }

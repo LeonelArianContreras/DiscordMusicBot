@@ -1,7 +1,9 @@
 package dev.discordMusicBot.bot;
 
+import dev.discordMusicBot.commands.databaseCommand.Register;
 import dev.discordMusicBot.commands.infoCommand.Avatar;
 import dev.discordMusicBot.commands.infoCommand.UserInfo;
+import dev.discordMusicBot.utils.LeoEvent;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
@@ -38,9 +40,10 @@ public class EventListener extends ListenerAdapter {
         commands.put("userinfo", new UserInfo());
         commands.put("hug", new GifCommand("hug"));
         commands.put("kiss", new GifCommand("kiss"));
-        commands.put("kick", new GifCommand("slap"));
+        commands.put("kick", new GifCommand("kick"));
         commands.put("love", new Love(new LoveService()));
         commands.put("say", new Say());
+        commands.put("register", new Register());
         // ToDo: Add commands left
     }
 

@@ -1,18 +1,15 @@
 package dev.discordMusicBot.commands;
 
-import dev.discordMusicBot.service.ImageUtils;
-import dev.discordMusicBot.service.LeoEvent;
+import dev.discordMusicBot.utils.ImageUtils;
+import dev.discordMusicBot.utils.LeoEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
 
 import java.io.File;
-import java.util.Random;
 
-import static dev.discordMusicBot.service.EmbedUtils.*;
+import static dev.discordMusicBot.utils.EmbedUtils.*;
 
 public class GifCommand implements Command {
 
-    private final Random random = new Random();
     private final String command;
 
     public GifCommand(String command) {

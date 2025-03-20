@@ -1,4 +1,4 @@
-package dev.discordMusicBot.service;
+package dev.discordMusicBot.utils;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LeoEvent {
 
@@ -90,7 +89,7 @@ public class LeoEvent {
 
     public void argumentsVerification(String command, String usageMsg, int minArgs, Integer maxArgs) {
         if(getSizeOfMessage() < minArgs || (maxArgs != null && getSizeOfMessage() > maxArgs)) { // If maxArgs == null, this part of the preposition will be false due to logical operators
-            sendBasicMessage("Usage: `!" + command + usageMsg);
+            sendBasicMessage("Usage: `!" + command + " " + usageMsg);
             return;
         }
     }

@@ -1,7 +1,7 @@
 package dev.discordMusicBot.commands.infoCommand;
 
 import dev.discordMusicBot.commands.Command;
-import dev.discordMusicBot.service.LeoEvent;
+import dev.discordMusicBot.utils.LeoEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 

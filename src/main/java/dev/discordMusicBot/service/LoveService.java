@@ -1,8 +1,6 @@
 package dev.discordMusicBot.service;
 
-import dev.discordMusicBot.service.*;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.utils.FileUpload;
+import dev.discordMusicBot.utils.ImageUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
