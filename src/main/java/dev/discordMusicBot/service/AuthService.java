@@ -37,7 +37,8 @@ public class AuthService {
                 "such as !playlist");
     }
 
-    public static void changePassword(String discord_id, LeoEvent event) {
+    public static void updateUserField(String discord_id, LeoEvent event, String field, String value) {
+
         if (!isRegistered(event, discord_id)) {
             event.sendBasicMessage("You need to register first!");
             return;
@@ -48,14 +49,8 @@ public class AuthService {
             return;
         }
 
-        if(!areEqualPasswords(event, 2, 3)) {
-            event.sendBasicMessage("Passwords do not match!");
-            return;
-        }
-
-        String password = event.getArgument(3);
-        userDAO.updateUserByDiscordID(discord_id, "password", password);
-        event.sendBasicMessage("Password successfully changed!");
+        userDAO.updateUserByDiscordID(discord_id, field, value);
+        event.sendBasicMessage(field.equals("password") ? "Password successfully updated!" : "Username successfully updated!");
     }
 
 }

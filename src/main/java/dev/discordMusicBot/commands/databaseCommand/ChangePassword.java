@@ -1,19 +1,19 @@
 package dev.discordMusicBot.commands.databaseCommand;
 
-import dev.discordMusicBot.commands.Command;
-import dev.discordMusicBot.models.UserEvent;
-import dev.discordMusicBot.utils.LeoEvent;
-
 import static dev.discordMusicBot.service.AuthService.*;
 
-public class ChangePassword implements Command {
+public class ChangePassword extends UpdateField {
 
-    public void execute(LeoEvent event) {
-        UserEvent userEvent = new UserEvent(event.getAuthor());
-        event.argumentsVerification("changePassword", "<previous password> " +
-                "<new password> <new password>", 4, null);
+    public ChangePassword() {
+        this.typeOfChange = ((event, discord_id) -> {
+            event.argumentsVerification("changeusername", "<previous password> " +
+                    "<new password> <new password>", 4, null);
 
-        String discord_id = userEvent.getUserId();
-        changePassword(discord_id, event);
+            if(!areEqualPasswords(event, 2, 3)) {
+                event.sendBasicMessage("Passwords do not match!");
+                return;
+            }
+            updateUserField(discord_id, event, "password", event.getArgument(2));
+        });
     }
 }
