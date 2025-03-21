@@ -7,7 +7,7 @@ public class ChangePassword extends UpdateField {
     public ChangePassword() {
         this.typeOfChange = ((event, discord_id) -> {
             event.argumentsVerification("changeusername", "<previous password> " +
-                    "<new password> <new password>", 4, null);
+                    "<new password> <new password>", 3, null);
 
             if(!areEqualPasswords(event, 2, 3)) {
                 event.sendBasicMessage("Passwords do not match!");
