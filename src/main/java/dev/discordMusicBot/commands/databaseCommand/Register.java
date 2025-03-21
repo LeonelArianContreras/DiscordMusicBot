@@ -11,7 +11,5 @@ public class Register implements Command {
         UserEvent userEvent = new UserEvent(event.getAuthor());
         event.argumentsVerification("register", "<password> <password>", 3, null);
         registerUser(userEvent.getUserId(), userEvent.getUsername(), event);
-        event.sendBasicMessage("Successfully registered!\nNow you are able to use special commands " +
-                               "such as !playlist");
     }
 }

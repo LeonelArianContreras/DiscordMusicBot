@@ -42,21 +42,21 @@ public class UserDAO {
         }
     }
 
-    public void updateUserByDiscordID(String discord_id, String name, String password) { // I suppose that discord_id will never change
-        String sql = "UPDATE users SET name = ?, password = ? WHERE discord_id = ?";
+    public void updateUserByDiscordID(String discord_id, String field, String newValue) {
+        String sql = "UPDATE users SET " + field + " = ? WHERE discord_id = ?";
 
-        try(Connection connection = connect()) {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, name);
-            statement.setString(2, password);
-            statement.setString(3, discord_id);
+        try (Connection connection = connect();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, newValue);
+            statement.setString(2, discord_id);
 
             int rowsAffected = statement.executeUpdate();
-            System.out.println(rowsAffected > 0 ? "User deleted" : "User not found");
+            System.out.println(rowsAffected > 0 ? "User updated" : "User not found");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Updated user: " + name + " failed");
+            System.out.println("Failed to update user field: " + field);
         }
     }
 
@@ -92,6 +92,23 @@ public class UserDAO {
 
     public boolean passwordIsCorrect(String discord_id, String password) { // ToDo
         return true;
+    }
+
+    public String getPassword(String discord_id) {
+        String sql = "SELECT password FROM users where discord_id = ?";
+        try(Connection connection = connect()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, discord_id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getString("password");
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Password not found");
+        }
+        return null;
     }
 
 }

@@ -1,5 +1,6 @@
 package dev.discordMusicBot.bot;
 
+import dev.discordMusicBot.commands.databaseCommand.ChangePassword;
 import dev.discordMusicBot.commands.databaseCommand.Register;
 import dev.discordMusicBot.commands.infoCommand.Avatar;
 import dev.discordMusicBot.commands.infoCommand.UserInfo;
@@ -44,6 +45,7 @@ public class EventListener extends ListenerAdapter {
         commands.put("love", new Love(new LoveService()));
         commands.put("say", new Say());
         commands.put("register", new Register());
+        commands.put("changepassword", new ChangePassword());
         // ToDo: Add commands left
     }
 
