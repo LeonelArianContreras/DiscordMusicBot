@@ -1,9 +1,5 @@
 package dev.discordMusicBot.service;
 
-import dev.discordMusicBot.service.*;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
