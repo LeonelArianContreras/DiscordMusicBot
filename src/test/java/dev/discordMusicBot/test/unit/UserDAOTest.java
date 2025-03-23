@@ -1,4 +1,4 @@
-package dev.discordMusicBot.test.java;
+package dev.discordMusicBot.test.unit;
 
 import dev.discordMusicBot.models.UserDB;
 import dev.discordMusicBot.persistence.UserDAO;

@@ -53,4 +53,9 @@ public class AuthService {
         event.sendBasicMessage(field.equals("password") ? "Password successfully updated!" : "Username successfully updated!");
     }
 
+    public static void removeFromDatabase(LeoEvent event, String discord_id) {
+        userDAO.deleteUserByDiscordID(discord_id);
+        event.sendBasicMessage("Successfully removed from database!");
+    }
+
 }

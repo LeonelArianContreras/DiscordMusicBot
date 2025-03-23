@@ -19,6 +19,7 @@ import java.util.Map;
 
 import dev.discordMusicBot.service.*;
 import dev.discordMusicBot.commands.*;
+import dev.discordMusicBot.commands.databaseCommand.*;
 
 public class EventListener extends ListenerAdapter {
 
@@ -48,6 +49,7 @@ public class EventListener extends ListenerAdapter {
         commands.put("register", new Register());
         commands.put("changepassword", new ChangePassword());
         commands.put("changeusername", new ChangeUsername());
+        commands.put("unregister", new Unregister());
         // ToDo: Add commands left
     }
 

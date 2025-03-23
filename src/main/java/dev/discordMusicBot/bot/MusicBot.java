@@ -39,7 +39,6 @@ public class MusicBot {
                         GatewayIntent.GUILD_MEMBERS,
                         GatewayIntent.GUILD_VOICE_STATES
                 ));
-        
         jda.setStatus(OnlineStatus.ONLINE);
         jda.addEventListeners(new EventListener());
         jda.build();
