@@ -1,5 +1,6 @@
 package dev.discordMusicBot.utils;
 
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -58,6 +59,10 @@ public class LeoEvent {
         return getMessageContent()[index];
     }
 
+    public Guild getGuild() {
+        return event.getGuild();
+    }
+
     public String getAnotherAvatarUrl() {
         if(getSizeOfMessage() == 2)
             return getAuthorEffectiveAvatarUrl();
@@ -93,5 +98,7 @@ public class LeoEvent {
             return;
         }
     }
+
+
 
 }

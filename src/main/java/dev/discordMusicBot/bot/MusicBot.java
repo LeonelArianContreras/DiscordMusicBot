@@ -1,5 +1,6 @@
 package dev.discordMusicBot.bot;
 
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -40,7 +41,7 @@ public class MusicBot {
                         GatewayIntent.GUILD_VOICE_STATES
                 ));
         jda.setStatus(OnlineStatus.ONLINE);
-        jda.addEventListeners(new EventListener());
-        jda.build();
+        JDA jdaInstance = jda.build();
+        jdaInstance.addEventListener(new EventListener(jdaInstance));
     }
 }

@@ -1,0 +1,28 @@
+server:
+  port: 2333
+
+lavalink:
+  server:
+    password: "Necroja2005" # Asegúrate de que esto coincide con tu bot
+    sources:
+      youtube: false # ✅ Desactiva el antiguo gestor de YouTube
+
+  plugins:
+    youtube:
+      enabled: true
+      allowSearch: true
+      allowDirectVideoIds: true
+      allowDirectPlaylistIds: true
+      clients:
+        - WEB
+        - MUSIC
+        - WEBEMBEDDED
+
+logging:
+  file:
+    path: ./logs/
+    max-history: 30
+    max-size: 1GB
+  level:
+    root: INFO
+    lavalink: INFO
